@@ -1,14 +1,10 @@
 const {createJob, processQueue} = require("./lib/utility");
-const jobType = 'job-tracer';
-
-createJob(jobType, 5);
+const jobType = 'job-progress-tracker';
 
 
-setTimeout(() => {
-    console.log('create a new job after a wild started');
-    createJob(jobType);
-}, 5 * 1000);
+createJob(jobType, 3);
 
+let progress = 0;
 processQueue(jobType, (job, done) => {
     /**
      * iterate on queue and call this function. pass job argument as input to this function.
@@ -17,7 +13,13 @@ processQueue(jobType, (job, done) => {
     console.log(`start processing job.data.id`, job.data.id);
     //...
     //...
+    while (progress < 100){
+        job.progress(progress, 150, {progressData: 'result in progress'});
+        progress+= 5;
+    }
+    progress = 0;
     setTimeout(() => {
-        done && done(null, `processing job ${job.data.id} completed successfully`);
-    }, 3 * 1000);
+         done && done(null, `processing job ${job.data.id} completed successfully`);
+        //done(new Error('test failed jobs'));
+    }, 10)
 });

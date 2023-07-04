@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "starter-sample": "node /src/queue.js",
-    "trace-job": "node src/tracking-jobs.js"
+    "starter-sample": "node src/queue.js",
+    "trace-job": "node src/tracking-jobs.js",
+    "progress-in-job": "node src/progress-in-job.js"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 const kue = require('kue');
 const events = require("./events");
-const queue = kue.createQueue();
+const queue = kue.createQueue({jobEvents : false});
 
 function createJob(jobType, count) {
     while (count > 0) {
@@ -37,6 +37,10 @@ function processQueue(jobType, worker) {
         worker(job, done);
     })
 }
+
+queue.on(events.jobProgress, (id, progress) => {
+    console.log('in queue process', 'job id:', id,'value', JSON.stringify(progress));
+});
 
 module.exports = {
     createJob,

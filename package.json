@@ -6,7 +6,8 @@
   "scripts": {
     "starter-sample": "node src/queue.js",
     "trace-job": "node src/tracking-jobs.js",
-    "progress-in-job": "node src/progress-in-job.js"
+    "track-job-events": "node src/track-job-events.js",
+    "track-queue-events": "node src/track-queue-events.js"
   },
   "repository": {
     "type": "git",
